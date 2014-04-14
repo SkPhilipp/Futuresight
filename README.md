@@ -1,5 +1,7 @@
 ## Futuresight
 
+[![Build Status](https://travis-ci.org/SkPhilipp/Futuresight.svg?branch=master)](https://travis-ci.org/SkPhilipp/Futuresight)
+
 _This project is no longer maintained and part of my source code "attic". Feel free to use it though, works fine._
 
 Futuresight allows you to wrap an object, which returns a proxy to that object on which every call made to the returned object will be wrapped in a proxied future; Wrap an object with Futuresight, and any calls to the wrapped object will return a result immediately and run the actual call to the original object in a separate thread. ( Unless the result type is a primitive or boxed, or some special class; i.e. `int`, `Integer`, probably `String` too, etc. ).
@@ -49,7 +51,7 @@ public class ToughCalculationsResultImpl implements IToughCalculationsResult {
 
 So basically we have a class that takes an extremely long time do do practically nothing, and it blocks the thread by sleeping.
 
-Now with `FutureSight` magic, we can make it run asynchronously! The test case below performs a 100 calls to `expensiveComputation`.
+Now with FutureSight magic, we can make it run asynchronously! The test case below performs a 100 calls to `expensiveComputation`.
 
 ```java
 // pick from CGLibAsyncDelayer, CGLibLazyDelayer, ProxyAsyncDelayer, ProxyLazyDelayer, they all work different
