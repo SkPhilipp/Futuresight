@@ -56,11 +56,13 @@ Now with `FutureSight` magic, we can make it run asynchronously! The test case b
 IToughCalculations calc = new CGLibAsyncDelayer().makeLazy(new ToughCalculationsImpl(), recursing);
 IToughCalculationsResult[] array = new IToughCalculationsResult[100];
 for (int i = 0; i < array.length; i++) {
-    // this should take 100ms
+    // this should take 100ms per call
     IToughCalculationsResult result = calc.expensiveComputation(i, i + 1);
+    // actually it doesn't because we used futuresight on it, it has returned instantly
     array[i] = result;
 }
 for (int i = 0; i < array.length; i++) {
+    // here is when futuresight will block to make sure it has an actual result, as it can no longer fake it
     Assert.assertEquals(i + i + 1, (int) array[i].result());
 }
 ```
